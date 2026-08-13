@@ -397,6 +397,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
+  TechnicaianProfile: 'TechnicaianProfile',
   User: 'User'
 } as const
 
@@ -413,10 +414,84 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "technicaianProfile" | "user"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
+    TechnicaianProfile: {
+      payload: Prisma.$TechnicaianProfilePayload<ExtArgs>
+      fields: Prisma.TechnicaianProfileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TechnicaianProfileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TechnicaianProfileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>
+        }
+        findFirst: {
+          args: Prisma.TechnicaianProfileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TechnicaianProfileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>
+        }
+        findMany: {
+          args: Prisma.TechnicaianProfileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>[]
+        }
+        create: {
+          args: Prisma.TechnicaianProfileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>
+        }
+        createMany: {
+          args: Prisma.TechnicaianProfileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TechnicaianProfileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>[]
+        }
+        delete: {
+          args: Prisma.TechnicaianProfileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>
+        }
+        update: {
+          args: Prisma.TechnicaianProfileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>
+        }
+        deleteMany: {
+          args: Prisma.TechnicaianProfileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TechnicaianProfileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TechnicaianProfileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>[]
+        }
+        upsert: {
+          args: Prisma.TechnicaianProfileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TechnicaianProfilePayload>
+        }
+        aggregate: {
+          args: Prisma.TechnicaianProfileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTechnicaianProfile>
+        }
+        groupBy: {
+          args: Prisma.TechnicaianProfileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TechnicaianProfileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TechnicaianProfileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TechnicaianProfileCountAggregateOutputType> | number
+        }
+      }
+    }
     User: {
       payload: Prisma.$UserPayload<ExtArgs>
       fields: Prisma.UserFieldRefs
@@ -530,6 +605,15 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const TechnicaianProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  hourlyRate: 'hourlyRate'
+} as const
+
+export type TechnicaianProfileScalarFieldEnum = (typeof TechnicaianProfileScalarFieldEnum)[keyof typeof TechnicaianProfileScalarFieldEnum]
+
+
 export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -576,6 +660,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal'
+ */
+export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+    
+
+
+/**
+ * Reference to a field of type 'Decimal[]'
+ */
+export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
 
@@ -771,6 +869,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
  */
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
+  technicaianProfile?: Prisma.TechnicaianProfileOmit
   user?: Prisma.UserOmit
 }
 

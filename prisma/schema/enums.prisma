@@ -1,7 +1,7 @@
 
 enum Role {
-  CUSTOMER
+   CUSTOMER
    TECHNICIAN
-   ADMIN
+    ADMIN
 
 }

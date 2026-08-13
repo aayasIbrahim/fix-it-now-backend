@@ -1,0 +1,7 @@
+model  TechnicaianProfile {
+    id    String @id @default(uuid())
+    userId String  @unique
+    hourlyRate Decimal @default(0)  @db.Decimal(10,2)
+    user  User  @relation(fields:[userId],references: [id],onDelete: Cascade)
+    @@map("tachnician_profiles")
+}
