@@ -6,7 +6,9 @@ dist
 node_modules/
 dist/
 generated/
+
 .env
+
 /generated/prisma
 scripts/
 .vercel/
