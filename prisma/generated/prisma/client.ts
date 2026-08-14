@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more TechnicaianProfiles
- * const technicaianProfiles = await prisma.technicaianProfile.findMany()
+ * // Fetch zero or more FavoriteTechnicians
+ * const favoriteTechnicians = await prisma.favoriteTechnician.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,10 +42,65 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model TechnicaianProfile
+ * Model FavoriteTechnician
  * 
  */
-export type TechnicaianProfile = Prisma.TechnicaianProfileModel
+export type FavoriteTechnician = Prisma.FavoriteTechnicianModel
+/**
+ * Model Address
+ * 
+ */
+export type Address = Prisma.AddressModel
+/**
+ * Model AvailabilitySlot
+ * 
+ */
+export type AvailabilitySlot = Prisma.AvailabilitySlotModel
+/**
+ * Model Booking
+ * 
+ */
+export type Booking = Prisma.BookingModel
+/**
+ * Model BookingStatusHistory
+ * 
+ */
+export type BookingStatusHistory = Prisma.BookingStatusHistoryModel
+/**
+ * Model Category
+ * 
+ */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
+ * Model RefreshToken
+ * 
+ */
+export type RefreshToken = Prisma.RefreshTokenModel
+/**
+ * Model Review
+ * 
+ */
+export type Review = Prisma.ReviewModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel
+/**
+ * Model TechnicianProfile
+ * 
+ */
+export type TechnicianProfile = Prisma.TechnicianProfileModel
 /**
  * Model User
  * 

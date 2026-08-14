@@ -1,17 +1,26 @@
 model User {
-  id                 String     @id @default(uuid())
-  name               String
-  email              String 
-  password           String
-  role               Role       @default(CUSTOMER)
-  profileImage       String?    @db.Text
-  status             UserStatus @default(ACTIVE)
-  isDelete           Boolean     @default(false)
-  createdAt          DateTime   @default(now())
-  updatedAt          DateTime   @updatedAt
-  tecnicianProfile  TechnicaianProfile?
+  id          String     @id @default(uuid())
+  name        String     @db.VarChar(255)
+  email       String     @unique @db.VarChar(255)
+  password    String     @db.VarChar(255)
+  profileImage String?    @db.Text
+  role        Role       @default(CUSTOMER)
+  status      UserStatus @default(ACTIVE)
+  isDeleted   Boolean    @default(false)
+  lastLoginAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  technicianProfile   TechnicianProfile?
+  addresses           Address[]
+  bookingsAsCustomer  Booking[]            @relation("CustomerBookings")
+  reviewsGiven        Review[]             @relation("CustomerReviews")
+  refreshTokens       RefreshToken[]
+  notifications       Notification[]
+  favoriteTechnicians FavoriteTechnician[] @relation("CustomerFavorites")
 
-
-  @@unique([email])
+  @@index([role])
+  @@index([status])
+  @@index([isDeleted])
   @@map("users")
 }

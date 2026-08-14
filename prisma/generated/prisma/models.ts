@@ -8,6 +8,17 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/TechnicaianProfile'
+export type * from './models/FavoriteTechnician'
+export type * from './models/Address'
+export type * from './models/AvailabilitySlot'
+export type * from './models/Booking'
+export type * from './models/BookingStatusHistory'
+export type * from './models/Category'
+export type * from './models/Notification'
+export type * from './models/Payment'
+export type * from './models/RefreshToken'
+export type * from './models/Review'
+export type * from './models/Service'
+export type * from './models/TechnicianProfile'
 export type * from './models/User'
 export type * from './commonInputTypes'

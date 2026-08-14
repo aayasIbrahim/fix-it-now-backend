@@ -51,7 +51,18 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  TechnicaianProfile: 'TechnicaianProfile',
+  FavoriteTechnician: 'FavoriteTechnician',
+  Address: 'Address',
+  AvailabilitySlot: 'AvailabilitySlot',
+  Booking: 'Booking',
+  BookingStatusHistory: 'BookingStatusHistory',
+  Category: 'Category',
+  Notification: 'Notification',
+  Payment: 'Payment',
+  RefreshToken: 'RefreshToken',
+  Review: 'Review',
+  Service: 'Service',
+  TechnicianProfile: 'TechnicianProfile',
   User: 'User'
 } as const
 
@@ -71,13 +82,187 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const TechnicaianProfileScalarFieldEnum = {
+export const FavoriteTechnicianScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  hourlyRate: 'hourlyRate'
+  customerId: 'customerId',
+  technicianId: 'technicianId',
+  createdAt: 'createdAt'
 } as const
 
-export type TechnicaianProfileScalarFieldEnum = (typeof TechnicaianProfileScalarFieldEnum)[keyof typeof TechnicaianProfileScalarFieldEnum]
+export type FavoriteTechnicianScalarFieldEnum = (typeof FavoriteTechnicianScalarFieldEnum)[keyof typeof FavoriteTechnicianScalarFieldEnum]
+
+
+export const AddressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  label: 'label',
+  addressLine: 'addressLine',
+  city: 'city',
+  district: 'district',
+  postalCode: 'postalCode',
+  isDefault: 'isDefault',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
+
+
+export const AvailabilitySlotScalarFieldEnum = {
+  id: 'id',
+  technicianId: 'technicianId',
+  weekday: 'weekday',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  isAvailable: 'isAvailable',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AvailabilitySlotScalarFieldEnum = (typeof AvailabilitySlotScalarFieldEnum)[keyof typeof AvailabilitySlotScalarFieldEnum]
+
+
+export const BookingScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  technicianId: 'technicianId',
+  serviceId: 'serviceId',
+  addressId: 'addressId',
+  scheduledDate: 'scheduledDate',
+  scheduledTime: 'scheduledTime',
+  address: 'address',
+  notes: 'notes',
+  price: 'price',
+  status: 'status',
+  paymentStatus: 'paymentStatus',
+  cancellationReason: 'cancellationReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BookingScalarFieldEnum = (typeof BookingScalarFieldEnum)[keyof typeof BookingScalarFieldEnum]
+
+
+export const BookingStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  status: 'status',
+  note: 'note',
+  createdAt: 'createdAt'
+} as const
+
+export type BookingStatusHistoryScalarFieldEnum = (typeof BookingStatusHistoryScalarFieldEnum)[keyof typeof BookingStatusHistoryScalarFieldEnum]
+
+
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  icon: 'icon',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  isRead: 'isRead',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  transactionId: 'transactionId',
+  amount: 'amount',
+  currency: 'currency',
+  provider: 'provider',
+  status: 'status',
+  paidAt: 'paidAt',
+  metadata: 'metadata',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const RefreshTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  token: 'token',
+  expiresAt: 'expiresAt',
+  revoked: 'revoked',
+  createdAt: 'createdAt'
+} as const
+
+export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+export const ReviewScalarFieldEnum = {
+  id: 'id',
+  bookingId: 'bookingId',
+  customerId: 'customerId',
+  technicianId: 'technicianId',
+  rating: 'rating',
+  comment: 'comment',
+  createdAt: 'createdAt'
+} as const
+
+export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  technicianId: 'technicianId',
+  categoryId: 'categoryId',
+  title: 'title',
+  description: 'description',
+  price: 'price',
+  duration: 'duration',
+  images: 'images',
+  serviceArea: 'serviceArea',
+  isAvailable: 'isAvailable',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
+
+
+export const TechnicianProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bio: 'bio',
+  yearsOfExperience: 'yearsOfExperience',
+  hourlyRate: 'hourlyRate',
+  averageRating: 'averageRating',
+  totalReviews: 'totalReviews',
+  totalCompletedJobs: 'totalCompletedJobs',
+  profileImage: 'profileImage',
+  phone: 'phone',
+  address: 'address',
+  city: 'city',
+  district: 'district',
+  isDeleted: 'isDeleted',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type TechnicianProfileScalarFieldEnum = (typeof TechnicianProfileScalarFieldEnum)[keyof typeof TechnicianProfileScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
@@ -85,10 +270,11 @@ export const UserScalarFieldEnum = {
   name: 'name',
   email: 'email',
   password: 'password',
-  role: 'role',
   profileImage: 'profileImage',
+  role: 'role',
   status: 'status',
-  isDelete: 'isDelete',
+  isDeleted: 'isDeleted',
+  lastLoginAt: 'lastLoginAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -102,6 +288,14 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const NullableJsonNullValueInput = {
+  DbNull: DbNull,
+  JsonNull: JsonNull
+} as const
+
+export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -118,4 +312,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
