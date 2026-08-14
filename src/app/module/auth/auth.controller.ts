@@ -13,7 +13,7 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
     statusCode: httpStatus.CREATED,
     success: true,
     message: "User registered successfully",
-    data: result
+    data: result,
   });
 });
 
@@ -99,7 +99,18 @@ const updateMyProfile = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'User profile updated successfully',
+    message: "User profile updated successfully",
+    data: result,
+  });
+});
+const addAddress = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.user?.userId as string;
+  const result = await AuthService.addAddress(userId, req.body);
+
+  sendResponse(res, {
+    success: true,
+    statusCode: httpStatus.CREATED,
+    message: "Address added successfully",
     data: result,
   });
 });
@@ -109,5 +120,6 @@ export const AuthController = {
   loginUser,
   getMe,
   refreshToken,
-  updateMyProfile
+  updateMyProfile,
+  addAddress,
 };

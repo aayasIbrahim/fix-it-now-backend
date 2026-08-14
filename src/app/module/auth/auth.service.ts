@@ -7,6 +7,7 @@ import config from "../../config";
 import { prisma } from "../../lib/prisma";
 import { jwtUtils } from "../../utils/jwt";
 import type {
+  ICreateAddress,
   ILoginUserPayload,
   IRegisterPatientPayload,
   IRequestUser,
@@ -45,7 +46,7 @@ const registerUser = async (payload: IRegisterPatientPayload) => {
       },
     });
     if (newUser.role === "TECHNICIAN") {
-      await tx.technicaianProfile.create({
+      await tx.technicianProfile.create({
         data: {
           userId: newUser.id,
           hourlyRate: 0,
@@ -67,7 +68,7 @@ const loginUser = async (payload: ILoginUserPayload) => {
   const user = await prisma.user.findUnique({
     where: { email },
     include: {
-      tecnicianProfile: true,
+      technicianProfile: true,
     },
   });
 
@@ -80,7 +81,7 @@ const loginUser = async (payload: ILoginUserPayload) => {
       "Your account has been blocked. Please contact support.",
     );
   }
-  if (user.isDelete) {
+  if (user.isDeleted) {
     throw new AppError(httpStatus.FORBIDDEN, "This account has been deleted.");
   }
 
@@ -121,7 +122,7 @@ const getMe = async (user: IRequestUser) => {
       id: user.userId,
     },
     include: {
-      tecnicianProfile: true,
+      technicianProfile: true,
     },
     omit: {
       password: true,
@@ -156,7 +157,7 @@ const refreshToken = async (token: string) => {
     where: { id: data.userId },
   });
 
-  if (!user || user.isDelete || user.status !== UserStatus.ACTIVE) {
+  if (!user || user.isDeleted|| user.status !== UserStatus.ACTIVE) {
     throw new AppError(
       httpStatus.UNAUTHORIZED,
       "User is inactive or not found",
@@ -212,11 +213,23 @@ const updateMyProfile = async (
 
   return result;
 };
+const addAddress = async (userId: string, payload: ICreateAddress) => {
+  const address = await prisma.address.create({
+    data: {
+      ...payload,
+      userId,
+    },
+  });
+
+  return address;
+};
 
 export const AuthService = {
+  
   registerUser,
   loginUser,
   getMe,
   refreshToken,
-  updateMyProfile
+  updateMyProfile,
+  addAddress,
 };

@@ -24,3 +24,12 @@ export interface IRequestUser {
   name: string;
   role: Role;
 }
+
+export type ICreateAddress = {
+  label?: string;
+  addressLine: string;
+  city: string;
+  district: string;
+  postalCode?: string;
+  isDefault?: boolean;
+};
