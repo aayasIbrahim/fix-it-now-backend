@@ -13,6 +13,10 @@ export interface IRegisterPatientPayload {
   password: string;
   role: Role;
 }
+export type IUpdateUserProfile = {
+  name?: string;
+  profileImage?: string;  
+};
 
 export interface IRequestUser {
   userId: string;

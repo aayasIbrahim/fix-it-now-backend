@@ -4,6 +4,7 @@ model User {
   email              String 
   password           String
   role               Role       @default(CUSTOMER)
+  profileImage       String?    @db.Text
   status             UserStatus @default(ACTIVE)
   isDelete           Boolean     @default(false)
   createdAt          DateTime   @default(now())

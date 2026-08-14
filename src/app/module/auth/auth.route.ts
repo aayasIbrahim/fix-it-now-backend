@@ -14,4 +14,10 @@ router.get(
   AuthController.getMe,
 );
 router.post("/refresh-token", AuthController.refreshToken);
+router.patch(
+  "/me",
+  auth(Role.CUSTOMER, Role.TECHNICIAN, Role.ADMIN),
+
+  AuthController.updateMyProfile,
+);
 export const AuthRoutes = router;

@@ -10,10 +10,11 @@ import type {
   ILoginUserPayload,
   IRegisterPatientPayload,
   IRequestUser,
+  IUpdateUserProfile,
 } from "./auth.interface";
-import { Role, UserStatus } from "../../../../prisma/generated/prisma/enums";
+import {  UserStatus } from "../../../../prisma/generated/prisma/enums";
 import AppError from "../../errors/AppError";
-import prismaConfig from "../../../../prisma.config";
+
 
 const registerUser = async (payload: IRegisterPatientPayload) => {
   const { name, email, password, role } = payload;
@@ -186,10 +187,36 @@ const refreshToken = async (token: string) => {
     refreshToken,
   };
 };
+const updateMyProfile = async (
+  userId: string,
+  payload: IUpdateUserProfile
+) => {
+  const { name, profileImage } = payload;
+  console.log(profileImage);
+  const result = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      name,
+      profileImage,
+    },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      profileImage: true,
+      status: true,
+      updatedAt: true,
+    },
+  });
+
+  return result;
+};
 
 export const AuthService = {
   registerUser,
   loginUser,
   getMe,
   refreshToken,
+  updateMyProfile
 };

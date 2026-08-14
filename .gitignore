@@ -3,8 +3,15 @@ node_modules
 .env.*
 !.env.example
 dist
-
-/src/generated
+node_modules/
+dist/
+generated/
+.env
+/generated/prisma
+scripts/
+.vercel/
+vercel.json
+/src/prisma/generated
 
 # Lock Files
 pnpm-lock.yaml
@@ -12,5 +19,3 @@ yarn.lock
 package-lock.json
 pnpm-workspace.yaml
 .vscode
-
-/generated/prisma
