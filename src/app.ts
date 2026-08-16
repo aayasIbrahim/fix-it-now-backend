@@ -29,17 +29,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/auth", AuthRoutes);
-app.use("/api/categories", CategoryRoutes)
-app.use("/api/services", ServiceRoutes);
+
 // Basic route
 app.get("/", async (req: Request, res: Response) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: "Welcome to  Backend",
+    message: "Welcome to FixitNow Backend",
     author: "Ayas Ibrahim",
   });
 });
+app.use("/api/auth", AuthRoutes);
+app.use("/api/categories", CategoryRoutes)
+app.use('/api/technicians', TechnicianRoutes);
+app.use("/api/services", ServiceRoutes);
 
 app.use(globalErrorHandler);
 app.use(notFound);
