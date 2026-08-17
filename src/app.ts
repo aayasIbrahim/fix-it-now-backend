@@ -12,6 +12,7 @@ import { notFound } from "./app/middleware/notFound";
 import { AuthRoutes } from "./app/module/auth/auth.route";
 import { ServiceRoutes } from "./app/module/service/service.router";
 import { CategoryRoutes } from "./app/module/category/category.route";
+import { TechnicianRoutes } from "./app/module/technician/technician.route";
 
 const app: Application = express();
 
