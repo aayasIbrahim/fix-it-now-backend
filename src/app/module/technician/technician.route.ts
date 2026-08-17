@@ -4,6 +4,7 @@ import express from 'express';
 
 import { auth } from '../../middleware/checkAuth';
 import { Role } from '../../../../prisma/generated/prisma/enums';
+import { TechnicianController } from './technican.controller';
 
 
 const router = express.Router();
