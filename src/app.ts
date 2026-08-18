@@ -14,6 +14,7 @@ import { ServiceRoutes } from "./app/module/service/service.router";
 import { CategoryRoutes } from "./app/module/category/category.route";
 import { TechnicianRoutes } from "./app/module/technician/technician.route";
 import { BookingRoutes } from "./app/module/booking/booking.route";
+import { AdminRoutes } from "./app/module/admin/admin.route";
 
 const app: Application = express();
 
@@ -44,6 +45,7 @@ app.use("/api/categories", CategoryRoutes);
 app.use("/api/technicians", TechnicianRoutes);
 app.use("/api/services", ServiceRoutes);
 app.use("/api/bookings", BookingRoutes);
+app.use('/api/admin', AdminRoutes);
 
 app.use(globalErrorHandler);
 app.use(notFound);
