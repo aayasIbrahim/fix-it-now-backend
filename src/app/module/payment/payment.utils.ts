@@ -1,10 +1,11 @@
 import Stripe from "stripe";
 import httpStatus from "http-status";
 
-import { stripe, stripeConfig } from "../../config/stripe.config";
+
 import AppError from "../../errors/AppError";
 import { IGatewayResult, IInitiatePaymentInput } from "./payment.interface";
 import { PaymentProvider } from "../../../../prisma/generated/prisma/enums";
+import { stripe, stripeConfig } from "../../config/stripe.config";
 
 export const generateTransactionId = (): string => {
   return `TXN-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;

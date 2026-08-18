@@ -1,4 +1,4 @@
-import { BookingStatus, PaymentStatus, Prisma } from "../../../generated/prisma/client";
+
 import httpStatus from "http-status";
 import Stripe from "stripe";
 import AppError from "../../errors/AppError";
@@ -17,6 +17,8 @@ import {
   verifyStripeSession,
   verifyWebhookSignature,
 } from "./payment.utils";
+import { BookingStatus, PaymentStatus } from "../../../../prisma/generated/prisma/enums";
+import { Prisma } from "../../../../prisma/generated/prisma/browser";
 
 const createPaymentIntent = async (
   userId: string,

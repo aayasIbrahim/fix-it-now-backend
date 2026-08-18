@@ -1,6 +1,5 @@
 import express from "express";
 
-
 import { PaymentController } from "./payment.controller";
 import { auth } from "../../middleware/checkAuth";
 import { Role } from "../../../../prisma/generated/prisma/enums";
@@ -18,41 +17,31 @@ router.post(
   "/create",
   auth(Role.CUSTOMER),
 
-  PaymentController.createPaymentIntent
+  PaymentController.createPaymentIntent,
 );
-
 
 router.post(
   "/confirm",
   auth(Role.CUSTOMER),
 
-  PaymentController.confirmPayment
+  PaymentController.confirmPayment,
 );
 
-router.post(
-  "/refund",
-  auth(Role.ADMIN),
-,
-  PaymentController.refundPayment
-);
+router.post("/refund", auth(Role.ADMIN), PaymentController.refundPayment);
 
 // Query Operations
 router.get(
   "/history",
   auth(Role.CUSTOMER),
-  PaymentController.getPaymentHistory
+  PaymentController.getPaymentHistory,
 );
 
-router.get(
-  "/",
-  auth(Role.ADMIN),
-  PaymentController.getAllPayments
-);
+router.get("/", auth(Role.ADMIN), PaymentController.getAllPayments);
 
 router.get(
   "/:id",
   auth(Role.CUSTOMER, Role.ADMIN),
-  PaymentController.getPaymentById
+  PaymentController.getPaymentById,
 );
 
 export const PaymentRoutes = router;
