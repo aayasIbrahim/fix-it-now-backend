@@ -1,8 +1,10 @@
-import { BookingStatus, Prisma } from '../../../generated/prisma/client';
+
 import httpStatus from 'http-status';
 import { prisma } from '../../lib/prisma';
 import AppError from '../../errors/AppError';
 import { ICreateReviewPayload, IReviewFilterOptions } from './review.interface';
+import { BookingStatus } from '../../../../prisma/generated/prisma/enums';
+import { Prisma } from '../../../../prisma/generated/prisma/browser';
 
 const createReview = async (userId: string, payload: ICreateReviewPayload) => {
   const { bookingId, rating, comment } = payload;

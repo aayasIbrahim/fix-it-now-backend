@@ -8,12 +8,7 @@ import { Role } from "../../../../prisma/generated/prisma/enums";
 const router = express.Router();
 
 // {{baseUrl}}/api/bookings/
-router.post(
-  "/",
-  auth(Role.CUSTOMER),
-
-  BookingController.createBooking,
-);
+router.post("/", auth(Role.CUSTOMER), BookingController.createBooking);
 
 // {{baseUrl}}/api/bookings/
 router.get(

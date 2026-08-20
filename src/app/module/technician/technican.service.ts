@@ -1,18 +1,24 @@
+import { Address } from "./../../../../prisma/generated/prisma/client";
 // src/modules/technician/technician.service.ts
 
-import { prisma } from '../../lib/prisma';
-import httpStatus from 'http-status';
-import AppError from '../../errors/AppError';
-import { IAvailabilitySlotPayload, IPaginationOptions, ITechnicianFilterOptions, IUpdateBookingStatusPayload, IUpdateTechnicianProfile } from './technican.interface';
-import { BookingStatus } from '../../../../prisma/generated/prisma/enums';
-
+import { prisma } from "../../lib/prisma";
+import httpStatus from "http-status";
+import AppError from "../../errors/AppError";
+import {
+  IAvailabilitySlotPayload,
+  IPaginationOptions,
+  ITechnicianFilterOptions,
+  IUpdateBookingStatusPayload,
+  IUpdateTechnicianProfile,
+} from "./technican.interface";
+import { BookingStatus } from "../../../../prisma/generated/prisma/enums";
 
 // GET AVAILABILITY
 const getAvailability = async (userId: string) => {
   if (!userId) {
     throw new AppError(
       httpStatus.UNAUTHORIZED,
-      'User ID is missing from authorization token'
+      "User ID is missing from authorization token",
     );
   }
 
@@ -23,7 +29,7 @@ const getAvailability = async (userId: string) => {
   if (!profile) {
     throw new AppError(
       httpStatus.NOT_FOUND,
-      'Technician profile not found. Please create a profile first.'
+      "Technician profile not found. Please create a profile first.",
     );
   }
 
@@ -34,16 +40,15 @@ const getAvailability = async (userId: string) => {
   return availabilitySlots;
 };
 
-
 // UPDATE PROFILE
 const updateProfile = async (
   userId: string,
-  payload: IUpdateTechnicianProfile
+  payload: IUpdateTechnicianProfile,
 ) => {
   if (!userId) {
     throw new AppError(
       httpStatus.UNAUTHORIZED,
-      'User ID is missing from authorization token'
+      "User ID is missing from authorization token",
     );
   }
 
@@ -52,7 +57,7 @@ const updateProfile = async (
   });
 
   if (!profile) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Technician profile not found');
+    throw new AppError(httpStatus.NOT_FOUND, "Technician profile not found");
   }
 
   const {
@@ -95,10 +100,10 @@ const updateProfile = async (
 // SET AVAILABILITY
 const setAvailability = async (
   userId: string,
-  slots: IAvailabilitySlotPayload[]
+  slots: IAvailabilitySlotPayload[],
 ) => {
   if (!userId) {
-    throw new AppError(httpStatus.UNAUTHORIZED, 'User ID is required');
+    throw new AppError(httpStatus.UNAUTHORIZED, "User ID is required");
   }
 
   const profile = await prisma.technicianProfile.findUnique({
@@ -106,7 +111,7 @@ const setAvailability = async (
   });
 
   if (!profile) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Technician profile not found');
+    throw new AppError(httpStatus.NOT_FOUND, "Technician profile not found");
   }
 
   const result = await prisma.$transaction(async (tx) => {
@@ -133,25 +138,25 @@ const setAvailability = async (
 // GET ALL TECHNICIANS (WITH PAGINATION & FILTERING)
 const getAllTechnicians = async (
   filters: ITechnicianFilterOptions,
-  options: IPaginationOptions
+  options: IPaginationOptions,
 ) => {
   const { search, city, district, minRating } = filters;
   const page = Number(options.page || 1);
   const limit = Number(options.limit || 10);
   const skip = (page - 1) * limit;
-  const sortBy = options.sortBy || 'createdAt';
-  const sortOrder = options.sortOrder || 'desc';
+  const sortBy = options.sortBy || "createdAt";
+  const sortOrder = options.sortOrder || "desc";
 
   const whereConditions: any = {
     isDeleted: false,
   };
 
   if (city) {
-    whereConditions.city = { equals: city, mode: 'insensitive' };
+    whereConditions.city = { equals: city, mode: "insensitive" };
   }
 
   if (district) {
-    whereConditions.district = { equals: district, mode: 'insensitive' };
+    whereConditions.district = { equals: district, mode: "insensitive" };
   }
 
   if (minRating && !isNaN(Number(minRating))) {
@@ -160,8 +165,8 @@ const getAllTechnicians = async (
 
   if (search) {
     whereConditions.OR = [
-      { bio: { contains: search, mode: 'insensitive' } },
-      { user: { name: { contains: search, mode: 'insensitive' } } },
+      { bio: { contains: search, mode: "insensitive" } },
+      { user: { name: { contains: search, mode: "insensitive" } } },
     ];
   }
 
@@ -205,7 +210,7 @@ const getAllTechnicians = async (
 // GET TECHNICIAN BY ID
 const getTechnicianById = async (id: string) => {
   if (!id) {
-    throw new AppError(httpStatus.BAD_REQUEST, 'Technician ID is required');
+    throw new AppError(httpStatus.BAD_REQUEST, "Technician ID is required");
   }
 
   const result = await prisma.technicianProfile.findUnique({
@@ -234,7 +239,7 @@ const getTechnicianById = async (id: string) => {
   });
 
   if (!result || result.isDeleted) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Technician profile not found');
+    throw new AppError(httpStatus.NOT_FOUND, "Technician profile not found");
   }
 
   return result;
@@ -245,7 +250,7 @@ const getTechnicianBookings = async (userId: string) => {
   if (!userId) {
     throw new AppError(
       httpStatus.UNAUTHORIZED,
-      'User ID is missing from authorization token'
+      "User ID is missing from authorization token",
     );
   }
 
@@ -256,7 +261,7 @@ const getTechnicianBookings = async (userId: string) => {
   if (!profile) {
     throw new AppError(
       httpStatus.NOT_FOUND,
-      'Technician profile not found. Please create or update your profile first.'
+      "Technician profile not found. Please create or update your profile first.",
     );
   }
 
@@ -271,10 +276,10 @@ const getTechnicianBookings = async (userId: string) => {
       payment: true,
       review: true,
       statusHistory: {
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: "desc" },
       },
     },
-    orderBy: { createdAt: 'desc' },
+    orderBy: { createdAt: "desc" },
   });
 
   return bookings;
@@ -284,10 +289,10 @@ const getTechnicianBookings = async (userId: string) => {
 const updateBookingStatus = async (
   userId: string,
   bookingId: string,
-  payload: IUpdateBookingStatusPayload
+  payload: IUpdateBookingStatusPayload,
 ) => {
   if (!userId) {
-    throw new AppError(httpStatus.UNAUTHORIZED, 'User ID is required');
+    throw new AppError(httpStatus.UNAUTHORIZED, "User ID is required");
   }
 
   const profile = await prisma.technicianProfile.findUnique({
@@ -295,7 +300,7 @@ const updateBookingStatus = async (
   });
 
   if (!profile) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Technician profile not found');
+    throw new AppError(httpStatus.NOT_FOUND, "Technician profile not found");
   }
 
   const booking = await prisma.booking.findUnique({
@@ -305,7 +310,7 @@ const updateBookingStatus = async (
   if (!booking || booking.technicianId !== profile.id) {
     throw new AppError(
       httpStatus.NOT_FOUND,
-      'Booking not found or unauthorized access'
+      "Booking not found or unauthorized access",
     );
   }
 
