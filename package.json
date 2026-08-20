@@ -23,7 +23,8 @@
     "http-status": "^2.1.0",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.23.0",
-    "stripe": "^22.5.0"
+    "stripe": "^22.5.0",
+    "tsup": "^8.5.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.10",
