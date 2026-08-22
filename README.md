@@ -31,9 +31,9 @@ Admins can manage the entire platform including users, bookings, categories, and
 
 | Resource | Link |
 |----------|------|
-| 🌐 Live API | https://fixitnow-backend-tau.vercel.app/ |
+| 🌐 Live API |    https://fixitnow-backend-alpha.vercel.app |
 | 📮 Postman Documentation | https://documenter.getpostman.com/view/52004920/2sBY4Qtffz |
-| 💻 GitHub Repository | https://github.com/mahfahim/FixItNow-backend |
+| 💻 GitHub Repository |https://github.com/aayasIbrahim/fix-it-now-backend|
 
 
 
